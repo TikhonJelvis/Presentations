@@ -2,7 +2,9 @@ module Presentations.Types where
 
 import           Data.Tree
 
+data Level = Top | Middle | Bottom deriving (Show, Eq, Bounded, Enum, Ord)
+
 data Item = Item { title :: String
-                 , text  :: Maybe String }
+                 , text  :: [String] } deriving (Show, Eq)
 
 type Outline = Tree Item
