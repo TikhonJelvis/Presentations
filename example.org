@@ -14,6 +14,12 @@
 
 *** Some sub-items
 
+    This is some text with *emphasis* and _underlined_ portions. Also
+    /italics/!
+
+    We also want to support math $\int_\alpha^\beta f(x)\ dx$, but
+    that seems unlikely.
+
 *** More sub-items
 
 ** Yet more text
