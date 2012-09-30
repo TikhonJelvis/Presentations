@@ -8,3 +8,7 @@ data Item = Item { title :: String
                  , text  :: [String] } deriving (Show, Eq)
 
 type Outline = Tree Item
+
+data Style = Text | Bold | Italic | Underlined | Code | Strike | TeX deriving (Show, Eq)
+
+type Styled = [(Style, String)]
