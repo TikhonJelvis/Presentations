@@ -7,3 +7,12 @@
 #prev:hover {
 	opacity: 1;
 }
+.bold {
+	font-weight: 700;
+}
+.italic {
+	font-style: italic;
+}
+.underline {
+	text-decoration: underline;
+}
