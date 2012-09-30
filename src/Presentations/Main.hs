@@ -16,8 +16,7 @@ main = getArgs >>= go
   where go [file] = do parsed <- parseFromFile outline file
                        case parsed of
                          Left  err -> putStrLn "Parse error!" >> print err
-                         Right res -> writeFile (file ++ ".html") output
-                           where output = intercalate "\n" $ slideToDiv <$> res
+                         Right res -> writeFile (file ++ ".html") $ output res
         go _      = putStrLn "Usage: `presentations <file>' where <file> is a file path."
 
 
@@ -35,4 +34,4 @@ test2 = do parsed <- parseFromFile outline exampleFile
            case parsed of
              Left e -> putStrLn "Error!" >> print e
              Right v -> do print v
-                           mapM_ (putStrLn . slideToDiv) v
+                           putStrLn $ output v
