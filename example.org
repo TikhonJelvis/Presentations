@@ -3,30 +3,16 @@
 
 ** Some text =code=
 
-*** Additional details
-
-    This is a paragraph of long-form text, just in case you want to
-    put far too much text up onto your slideshow.
-
-    This is a second paragraph just to make sure the paragraph parsing
-    and rendering works.
-
 ** More text
-
-*** Some sub-items
-
-    This is some text with *emphasis* and _underlined_ portions. Also
-    /italics/!
-
-    We also want to support math $\int_\alpha^\beta f(x)\ dx$, but
-    that seems unlikely.
-
-*** More sub-items
 
 ** Yet more text
 
 # effect: fade-in
 * Slide 2
+
+** Even more text here.
+
+** Another bullet-point
 
 * Slide 3
 
