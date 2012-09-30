@@ -1,25 +1,22 @@
 <html>  
     <head>  
         <title>Raphael Play</title>  
-        <script type="text/javascript" src="path/to/raphael.js"></script>  
-        <script type="text/javascript" src="path/to/our_script.js"></script>  
-        <style type="text/css">  
-            #canvas_container {  
-                width: 500px;  
-                border: 1px solid #aaa;  
-            }
-        </style>
+        <script type="text/javascript" src="raphael.js"></script>  
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+        <script type="text/javascript" src="script.js"></script>  
+        <link rel="stylesheet" type="text/css" href="style.css"></link> 
     </head>
     <body>
-        <div class="slide">
+        <div id="canvas_container">
+        <div class="slide hidden">
             <div class="title">Slide 1</div>
             <ul>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
+                <li>Lorem ipsum dolor sit amet, <span class="bold">consectetuer adipiscing</span> elit, sed <span class="italic">diam nonummy</span> nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
                 <li>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </li>
                 <li>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</li>
             </ul>
         </div>
-        <div class="slide">
+        <div class="slide hidden">
             <div class="title">Slide 2</div>
             <ul>
                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
@@ -27,7 +24,7 @@
                 <li>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</li>
             </ul>
         </div>
-        <div class="slide">
+        <div class="slide hidden">
             <div class="title">Slide 3</div>
             <ul>
                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
@@ -35,7 +32,7 @@
                 <li>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</li>
             </ul>
         </div>
-        <div class="slide">
+        <div class="slide hidden">
             <div class="title">Slide 4</div>
             <ul>
                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
@@ -43,7 +40,7 @@
                 <li>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</li>
             </ul>
         </div>
-        <div class="slide">
+        <div class="slide hidden">
             <div class="title">Slide 5</div>
             <ul>
                 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutp.</li> 
@@ -51,5 +48,7 @@
                 <li>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</li>
             </ul>
         </div>
+    </div>
+    
     </body>
 </html>
