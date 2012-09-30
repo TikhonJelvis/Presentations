@@ -10,19 +10,45 @@ import           Presentations.Types
 import           Text.Blaze.Html.Renderer.String (renderHtml)
 import           Text.Hamlet                     (shamlet)
 
-slideToDiv (Node item children) = renderHtml $ [shamlet|
-<div class="slide #{getEffect item}">
+output :: [Outline] -> String
+output = renderHtml . slidesToPresentation
+
+slidesToPresentation slides = [shamlet|
+$doctype 5
+<html>
+  <head>
+    <title>
+      Presentation
+    ^{script "raphael.js"}
+    ^{script "https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"}
+    ^{script "script.js"}
+    <link rel="stylesheet" type="text/css" href="style.css">
+  <body>
+    <div#canvas_contain>
+      $forall slide <- slides
+        ^{slideToDiv slide}
+|]
+
+script src = [shamlet|<script type="text/javascript" src=#{src}>|]
+
+slideToDiv (Node item children) = [shamlet|
+<div class="slide hidden #{getEffect item}">
   <div.title>
     $forall tag <- map markedToTags (markup (title item))
       ^{tag}
-  <ul>
-    $forall child <- children
-      ^{pointToLi child}
+  ^{childrenList children}
 |]
 
 getEffect :: Item -> String
 getEffect Item {effect=""} = ""
 getEffect Item {effect}    = "effects-" ++ effect
+
+childrenList []       = [shamlet| |]
+childrenList children = [shamlet|
+<ul>
+  $forall child <- children
+    ^{pointToLi child}
+|]
 
 pointToLi (Node item children) = [shamlet|
 <li>
@@ -32,9 +58,7 @@ pointToLi (Node item children) = [shamlet|
     <p>
       $forall tag <- map markedToTags (markup paragraph)
         ^{tag}
-  <ul>
-    $forall child <- children
-      ^{pointToLi child}
+  ^{childrenList children}
 |]
 
 markedToTags (style, text) = case style of
