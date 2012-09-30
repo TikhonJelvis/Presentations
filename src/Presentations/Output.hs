@@ -1,4 +1,5 @@
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE QuasiQuotes    #-}
 module Presentations.Output where
 
 import           Data.Tree                       (Tree (..))
@@ -10,14 +11,18 @@ import           Text.Blaze.Html.Renderer.String (renderHtml)
 import           Text.Hamlet                     (shamlet)
 
 slideToDiv (Node item children) = renderHtml $ [shamlet|
-<div.slide>
-  <div class="title #{effect item}">
+<div class="slide #{getEffect item}">
+  <div.title>
     $forall tag <- map markedToTags (markup (title item))
       ^{tag}
   <ul>
     $forall child <- children
       ^{pointToLi child}
 |]
+
+getEffect :: Item -> String
+getEffect Item {effect=""} = ""
+getEffect Item {effect}    = "effects-" ++ effect
 
 pointToLi (Node item children) = [shamlet|
 <li>
