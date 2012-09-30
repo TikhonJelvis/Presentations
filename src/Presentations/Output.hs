@@ -25,7 +25,8 @@ pointToLi (Node item children) = [shamlet|
     ^{tag}
   $forall paragraph <- text item
     <p>
-      #{paragraph}
+      $forall tag <- map markedToTags (markup paragraph)
+        ^{tag}
   <ul>
     $forall child <- children
       ^{pointToLi child}
@@ -38,4 +39,4 @@ markedToTags (style, text) = case style of
   Underlined -> [shamlet|<span.underlined> #{text}|]
   Code       -> [shamlet|<span.code> #{text}|]
   Strike     -> [shamlet|<span.strike> #{text}|]
-  TeX        -> [shamlet|\(text\)|]
+  TeX        -> [shamlet|\\(#{text}\)|]
