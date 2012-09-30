@@ -1,9 +1,10 @@
 $(document).ready(function() {
-	var p  = new Raphael(0,0,960,600);
-	var r = p.rect(0,0,960,600);
+	var fake = new Raphael(0,0, 960, 600);
+	var p  = new Raphael(10, 10,960,600);
+	var r = fake.rect(0,00,960,600);
 	r.attr(  
         {  
-            gradient: '90-#E80000-#780000',  
+            gradient: '90-#00CCFF-#0066FF',  
             stroke: '#3b4449',  
             'stroke-width': 10,  
             'stroke-linejoin': 'round',  
@@ -35,6 +36,7 @@ $(document).ready(function() {
 	function switchSlide(other){
 		if (other.length){
 			slides.filter(".current").removeClass("current");
+			$('.title_point').remove();
 			$(".bullet_point").each(function(){
 				$(this).remove();
 			});
@@ -47,11 +49,11 @@ $(document).ready(function() {
 
 	function displayBullets(current_slide){
 		var title = p.text( 480, 50, current_slide.find('.title').text()).attr({"font-size": "50px"});
-		var top_y = 100;
-		var increment = 30;
+		title.node.setAttribute("class", "title_point");
+		var top_y = 120;
 		//one bullet point
 		current_slide.find('li').each(function(){
-			var prev_text = p.text(50,top_y,"");
+			var prev_text = p.text(100,top_y,"");
 			$(this).contents().each(function(){
 				if ($(this).is('span')) {
 					//figure out type of text
@@ -65,10 +67,13 @@ $(document).ready(function() {
 						t.attr("font-style", "italic");
 					}
 					if (c.indexOf('underline') >= 0){
-						t.attr("text-decoration", "underline");
+						t.node.setAttribute("text-decoration", "underline");
 					}
 					if (c.indexOf('code') >= 0) {
 						t.attr("font-family", "monospace");
+					}
+					if (c.indexOf('strike') >= 0) {
+						t.node.setAttribute("text-decoration", "line-through");
 					}
 					var width = 860 - prev_text.getBBox().width;
 					textWrap(t, width, $(this).html());
@@ -100,12 +105,12 @@ $(document).ready(function() {
 		});
 
 		var words = words.split(" ");
-		var x = 0, s = [], i = 0;
+		var x = 30, s = [], i = 0;
 		for (i; i < words.length; i++) {
 			var l = words[i].length;
 			if (x + (l * letterWidth) > width ) {
 				s.push("\n");
-				x = 0;
+				x = 30;
 			}
 			x += l * letterWidth;
 			s.push(words[i] + " ");
