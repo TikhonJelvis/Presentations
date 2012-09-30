@@ -25,8 +25,8 @@ toTree = go
                 children = takeWhile below $ dropWhile isP rest
                 remainder = dropWhile below $ dropWhile isP rest
 
-outline :: Parser [Entry]
-outline = many1 block
+outline :: Parser [Outline]
+outline = toTree <$> many1 block
 
 block :: Parser Entry
 block =  try heading
@@ -50,6 +50,3 @@ line = do notFollowedBy $ char '*'
 
 emptyLines :: Parser ()
 emptyLines = () <$ try (many $ skipMany (char ' ') *> newline)
-
-eol :: Parser ()
-eol = (() <$ newline) <|> eof
