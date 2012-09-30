@@ -1,0 +1,9 @@
+.hidden {
+	display: none;
+}
+#prev{
+
+}
+#prev:hover {
+	opacity: 1;
+}
