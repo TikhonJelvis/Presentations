@@ -1,3 +1,4 @@
+# effect: slide-right
 * Slide 1
 
 ** Some text =code=
@@ -24,6 +25,7 @@
 
 ** Yet more text
 
+# effect: fade-in
 * Slide 2
 
 * Slide 3

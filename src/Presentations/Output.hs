@@ -11,7 +11,7 @@ import           Text.Hamlet                     (shamlet)
 
 slideToDiv (Node item children) = renderHtml $ [shamlet|
 <div.slide>
-  <div.title>
+  <div class="title #{effect item}">
     $forall tag <- map markedToTags (markup (title item))
       ^{tag}
   <ul>

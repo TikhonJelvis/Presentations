@@ -9,16 +9,16 @@ import           Presentations.Types
 
 import           Text.ParserCombinators.Parsec
 
-data Entry = Heading Level String
+data Entry = Heading String Level String
            | Paragraph String deriving (Show, Eq)
 
 toTree :: [Entry] -> [Outline]
 toTree = go
   where go [] = []
-        go ((Heading level title) : rest) = currNode : go remainder
-          where currNode = Node (Item title body) (toTree children)
-                below (Heading level' _) = level' > level
-                below Paragraph{}        = True
+        go ((Heading effect level title) : rest) = currNode : go remainder
+          where currNode = Node (Item title body effect) (toTree children)
+                below (Heading _ level' _) = level' > level
+                below Paragraph{}          = True
                 isP Paragraph{} = True
                 isP _           = False
                 body = (\ (Paragraph p) -> p) <$> takeWhile isP rest
@@ -33,11 +33,15 @@ block =  try heading
      <|> try paragraph
 
 heading :: Parser Entry
-heading = Heading <$> level <* spaces <*> title
+heading = Heading <$> (try effectAnnotation <|> return "") <*> level <* spaces <*> title
   where level =  Bottom <$ try (string "***")
              <|> Middle <$ try (string "**")
              <|> Top    <$ string "*"
         title = many1 (noneOf "\n") <* many newline
+
+effectAnnotation :: Parser String
+effectAnnotation = spaces *> char '#' *> spaces *> specification <* (() <$ newline <|> eof)
+  where specification = string "effect: " *> spaces *> many (noneOf "\n")
 
 paragraph :: Parser Entry
 paragraph = Paragraph <$> body <* many newline
@@ -45,6 +49,7 @@ paragraph = Paragraph <$> body <* many newline
 
 line :: Parser String
 line = do notFollowedBy $ char '*'
+          notFollowedBy $ spaces *> char '#'
           skipMany $ oneOf " \t"
           many1 (noneOf "\n")
 
